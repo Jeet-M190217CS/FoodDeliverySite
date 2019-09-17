@@ -17,8 +17,6 @@ default: &default
   password: fooddeliverysiteuser
   socket: /var/run/mysqld/mysqld.sock
 
-  #test
-
 development:
   <<: *default
   database: FoodDeliverySite_development
