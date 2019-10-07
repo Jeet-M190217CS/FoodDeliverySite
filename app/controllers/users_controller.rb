@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         if @user.save
             #saves successfully redirect to profile page (i.e users#show)
             flash[:success] = "Sign Up Successfully !!! "
+            flash[:info] = "Update Profile details"
             redirect_to @user
         else
             #erros
