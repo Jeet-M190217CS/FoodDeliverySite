@@ -1,0 +1,42 @@
+<div class="container h-100 d-flex justify-content-center">
+    <div class="row align-items-center">
+        <div class="card-deck">
+            <div class="card text-center">
+                <%= image_tag "food.jpg", alt:"food image", class:"card-img-top",size:"200x280"%>
+                <div class="card-body">
+                    <h5 class="card-title">Hungry?</h5>
+                    <p class="card-text">Order Food Now, Log in to Order.<br>Not a User? Sign Up Now!!!</p>
+                    <a href="#" class="btn btn-primary">Log In</a>
+                    <a href="<%= new_user_path+"?role=U"%>" class="btn btn-primary">Sign Up</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">User</small>
+                </div>
+            </div>
+            <div class="card text-center">
+                <%= image_tag "rest.jpg", alt:"restaurant image", class:"card-img-top", size:"200x280"%>
+                <div class="card-body">
+                    <h5 class="card-title">Sell Your Food</h5>
+                    <p class="card-text">Regiter Your Restaurant.<br>Already User? Login to manage.</p>
+                    <a href="#" class="btn btn-primary">Log In</a>
+                    <a href="<%= new_user_path+"?role=R"%>" class="btn btn-primary">Register</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Restautant Owner</small>
+                </div>
+            </div>
+            <div class="card text-center">
+                <%= image_tag "admin.png", alt:"restaurant image", class:"card-img-top",size:"200x280"%>
+                <div class="card-body">
+                <h5 class="card-title">Manage Application</h5>
+                <p class="card-text">Log in / <br> Sign Up as Admin<br></p>
+                    <a href="#" class="btn btn-primary">Log In</a>
+                    <a href="<%= new_user_path+"?role=A"%>" class="btn btn-primary">Register</a>
+                </div>
+                <div class="card-footer">
+                <small class="text-muted">Admin</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

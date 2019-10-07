@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <a class="navbar-brand">Food Delivery Site</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <% if true %> <!-- if user not logged in -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<%= new_user_path+"?role=U"%>">Sign Up</a>
+                </li>
+            <% else %> <!-- if user logged in -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        User Name <!-- write user name from session-->
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%= link_to "Profile", "/users/1", class:"dropdown-item"%>
+                        <a class="dropdown-item" href="<%= root_path%>">View Order</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Log Out</a>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</nav>

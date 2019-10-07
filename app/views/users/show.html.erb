@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-9 order-lg-2">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Profile</a>
+                    <a class="nav-item nav-link" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="false">Edit</a>
+                </div>
+            </nav>
+
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <%= render "layouts/normal-user-profile"%>
+                </div>
+
+                <div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
+                    <%= render "layouts/normal-user-edit-profile"%>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 order-lg-1">
+            <%= image_tag "food.jpg", size:"250x250", class:"mx-auto img-fluid img-circle d-block"%>
+            <h6 class="mt-2 text-center">Upload a different photo</h6>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+        </div>    
+    </div>
+</div>
