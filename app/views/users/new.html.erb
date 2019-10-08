@@ -3,19 +3,10 @@
 <div class="text-center"><h3>Sign Up</h3></div>
 <%if @user.errors.any? %>
     <div class="row">
-    <div class="col-lg-6 offset-lg-3">
-    <div id="error_explanation">
-        <div class="alert alert-danger">
-            The forms contains <%= pluralize(@user.errors.count, "error")%>.
+        <div class="col-lg-6 offset-lg-3">
+            <%= render 'layouts/user-error' %>
         </div>
-        <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-        </ul>
-    </div>
-    </div>
-    </div>
+   </div>
 <% end %>
 <div class="row">
     <div class="col-lg-6 offset-lg-3">

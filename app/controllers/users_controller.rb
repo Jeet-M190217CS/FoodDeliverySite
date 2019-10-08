@@ -11,15 +11,64 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         
         if @user.save
-            #saves successfully redirect to profile page (i.e users#show)
             flash[:info] = "Update Profile details"
             flash[:success] = "Sign Up Successfully !!!"
             log_in @user
             redirect_to @user
         else
-            #erros
             render 'new'
         end
+    end
+
+    def update
+        @user = User.find(params[:id])
+        @user.name = params[:user][:name]
+        @user.email = params[:user][:email]
+        @user.phone = params[:user][:phone]
+
+        @adrs = Address.find_by(parent_ref_id:params[:id], parent_ref_type:"User")
+        @adrs ||= Address.new
+        @adrs.street = params[:user][:street]
+        @adrs.city = params[:user][:city]
+        @adrs.pincode = params[:user][:pincode]
+        @adrs.state = params[:user][:state]
+
+        @user.valid?
+
+        if @adrs.valid?
+            @user.address = @adrs
+        else
+            @adrs.errors.full_messages.each do |msg|
+                @user.errors.add(:base,msg)
+            end
+        end
+
+        if params[:user][:password] != "dummyvalue" || params[:user][:confirm_password] != "dummyvalue"
+            if params[:user][:password].length < 6
+                @user.errors.add(:password, :too_short, message: "is too short (minimum is 6 characters)")
+            elsif params[:user][:password]!= params[:user][:confirm_password]
+                @user.errors.add(:password_confirmation, :confirmation, message: "doesn't match Password")
+            else
+                @user.password = params[:user][:password]
+                @user.password_confirmation = params[:user][:confirm_password]
+            end
+        end
+
+        if @user.errors.count > 0
+            render 'show'
+            return
+        end
+
+        if @user.save
+            flash.now[:success] = "Profile Updated Suceesfully."
+        end
+
+        render 'show'
+    end
+
+    def dashboard
+        @user = User.find_by(id: params[:id])
+
     end
 
     def user_params

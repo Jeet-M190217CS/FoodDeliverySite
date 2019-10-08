@@ -1,26 +1,26 @@
 <nav class="navbar navbar-expand-lg bg-light">
-    <a class="navbar-brand" href="<%= root_path%>">Food Delivery Site</a> <!-- based upon session give link -->
+    <a class="navbar-brand" href="<%= user_logged_in? ? '/dashboard/'+current_user.id.to_s : root_path%>">Food Delivery Site</a> <!-- based upon session give link -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-            <% if !user_logged_in? %> <!-- if user not logged in -->
+            <% if !user_logged_in? %>
                 <li class="nav-item">
                     <a class="nav-link" href="<%= login_path %>">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<%= new_user_path+"?role=U"%>">Sign Up</a>
                 </li>
-            <% else %> <!-- if user logged in -->
+            <% else %> 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <%= current_user.name%>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <%= link_to "Dashboard", "/dashboard/"+current_user.id.to_s, class: "dropdown-item"%>
                         <%= link_to "Profile", current_user, class:"dropdown-item"%>
-                        <a class="dropdown-item" href="<%= root_path%>">View Order</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<%= logout_path %>" data-method="delete">Log Out</a>
                     </div>

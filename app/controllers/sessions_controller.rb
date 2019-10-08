@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       #redirect user to dashboard
       flash[:success] = 'Logged in Successfully!!!'
-      redirect_to user
+      redirect_to '/dashboard/'+user.id.to_s
     else
       flash.now[:danger] = 'Invalid email/password'
       render 'new'
