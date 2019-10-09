@@ -15,3 +15,36 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#process-order-table').DataTable();
+} );
+var pusher = new Pusher('033b707bcaba4f7c5f3d', {
+    cluster: 'ap2',
+    forceTLS: true
+});
+
+var channel = pusher.subscribe('order');
+channel.bind('new-order', function(order) {
+    var newTableRow1 =  '<tr id="process-row-'+order.id+'">'
+                        +'<td>'+order.id+'</td>'
+                        +'<td>'+order.user_id+'</td>'
+                        +'<td>'+order.restaurant_id+'</td>'
+                        +'<td>'+order.created_at+'</td>'
+                        +'<td id="process-order-status-'+order.id+'">'+order.status+'</td>'
+                        +'<td><a data-remote="true" href="/orders/change_status/'+order.id+'">Change Status</a></td>'
+                        +'</tr>';
+
+    var newTableRow2 =  '<tr id="process-row-'+order.id+'">'
+                        +'<td>'+order.id+'</td>'
+                        +'<td>'+order.user_id+'</td>'
+                        +'<td>'+order.restaurant_id+'</td>'
+                        +'<td>'+order.created_at+'</td>'
+                        +'<td id="process-order-status-'+order.id+'">'+order.status+'</td>'
+                        +'</tr>';
+    $('#view-order-table tr:last').after(newTableRow2);
+    $('#process-order-table tr:last').after(newTableRow1);;
+    console.log(newTableRow1);
+});
+</script>
