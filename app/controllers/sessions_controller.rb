@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :not_logged_in, only: [:new]
+
   def new
   end
 
@@ -19,5 +21,13 @@ class SessionsController < ApplicationController
     log_out
     flash[:success] = 'Logged out Successfully!!!'
     redirect_to root_path
+  end
+
+  private
+
+  def not_logged_in
+    if user_logged_in?
+      redirect_to '/dashboard/'+current_user.id.to_s
+    end
   end
 end
