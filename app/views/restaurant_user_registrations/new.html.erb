@@ -1,0 +1,25 @@
+<div class="container">
+<br>
+<div class="text-center"><h3>Sign Up</h3></div>
+<%if @registration.errors.any? %>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div id="error_explanation">
+                <div class="alert alert-danger">
+                    The form contains errors.
+                </div>
+                <ul>
+                    <% @registration.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+   </div>
+<% end %>
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <%= render 'layouts/restaurant-user-registration-form'%>
+    </div>
+</div>
+</div>

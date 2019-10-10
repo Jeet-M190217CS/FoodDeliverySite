@@ -1,0 +1,59 @@
+<%= form_for @registration, url: res_user_reg_path do |f|%>
+            <div class="form-group">
+                    <%= f.label :name%>
+                    <%= f.text_field :name, class:"form-control", placeholder:"Enter Name", required:true%>
+            </div>
+            <div class="form-group">
+                <%= f.label :email%>
+                <%= f.email_field :email, class:"form-control", placeholder:"Enter Email",required:true%>
+            </div>
+
+            <div class="form-group">
+                <%= f.label :phone %>
+                <%= f.telephone_field :phone, class:"form-control ", placeholder:"Enter Phone Number",required:true%>
+            </div>
+            <div class="text-center"><small id="passwordHelpInline" class="text-muted">Restaurant Details</small></div>
+            <div class="form-group">
+                <%= f.label :restaurant_name%>
+                <%= f.text_field :restaurant_name, class:"form-control", placeholder:"Enter Restaurant Name",required:true%>
+            </div>
+            <div class="form-group">
+                <%= f.label :street %>
+                <%= f.telephone_field :street, class:"form-control ", placeholder:"Enter Street",required:true%>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <%= f.label :city%>
+                    <%= f.text_field :city, class:"form-control", placeholder:"Enter City",required:true%>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <%= f.label :pincode%>
+                    <%= f.text_field :pincode, class:"form-control", placeholder:"Enter pincode",required:true%>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <%= f.label :state%>
+                    <%= f.text_field :state, class:"form-control", placeholder:"Enter State",required:true%>
+                </div>
+            </div>
+
+            <div class="form-row">
+            <div class="form-group col-md-6">
+                <%= f.label :password%>
+                <%= f.password_field :password, class:"form-control", placeholder:"Enter Password",required:true%>
+            </div>
+
+            <div class="form-group col-md-6">
+                <%= f.label :password_confirmation, "Password Confirmation" %>
+                <%= f.password_field :password_confirmation, class:"form-control", placeholder:"Confirm Password",required:true%>
+            </div>
+            </div>
+            
+            <%= hidden_field_tag 'role', params[:role] %>
+            
+            <div class="form-group">
+                <%= f.submit "Sign Up", class:"btn btn-primary btn-block" %>
+            </div>
+<% end %>

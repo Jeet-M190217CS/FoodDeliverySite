@@ -10,7 +10,7 @@
             <%= f.label :name, class:"col-form-label form-control-label"%>
         </div>
         <div class="col-lg-9">
-            <%= f.text_field :name, class:"form-control", value:@user.name%>
+            <%= f.text_field :name, class:"form-control", value:@user.name,required:true%>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
             <%= f.label :email, class:"col-form-label form-control-label" %>
         </div>
         <div class="col-lg-9">
-            <%= f.email_field :email, class:"form-control", value:@user.email%>
+            <%= f.email_field :email, class:"form-control", value:@user.email,required:true%>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
             <%= f.label :phone, class:"col-form-label form-control-label"%>
         </div>
         <div class="col-lg-9">
-            <%= f.text_field :phone, class:"form-control", values:@user.phone%>
+            <%= f.text_field :phone, class:"form-control", values:@user.phone,required:true%>
         </div>
     </div>
  
@@ -38,7 +38,7 @@
             <%= f.label :address, class:"col-form-label form-control-label"%>
         </div>
         <div class="col-lg-9">
-            <%= f.text_field :street ,class:"form-control",placeholder:"Street", value:@user.address.nil? ? "":@user.address.street%>
+            <%= f.text_field :street ,class:"form-control",placeholder:"Street", value:@user.address.nil? ? "":@user.address.street,required:true%>
         </div>
     </div>
  
@@ -47,13 +47,13 @@
             <label class="col-form-label form-control-label"></label>
         </div>
         <div class="col-lg-3">
-            <%= f.text_field :city, class:"form-control", placeholder:"City", value:@user.address.nil? ? "" : @user.address.city%>
+            <%= f.text_field :city, class:"form-control", placeholder:"City", value:@user.address.nil? ? "" : @user.address.city,required:true%>
         </div>
         <div class="col-lg-3">
-            <%= f.text_field :pincode, class:"form-control", placeholder:"Pincode",value:@user.address.nil? ? "" : @user.address.pincode%>
+            <%= f.text_field :pincode, class:"form-control", placeholder:"Pincode",value:@user.address.nil? ? "" : @user.address.pincode,required:true%>
         </div>
         <div class="col-lg-3">
-            <%= f.text_field :state, class:"form-control", placeholder:"State", value:@user.address.nil? ? "" : @user.address.state%>
+            <%= f.text_field :state, class:"form-control", placeholder:"State", value:@user.address.nil? ? "" : @user.address.state,required:true%>
         </div>
     </div>
     <% end %>
@@ -62,7 +62,7 @@
             <%= f.label :password, class:"col-form-label form-control-label"%>
         </div>
         <div class="col-lg-9">
-            <%= f.password_field :password, class:"form-control", value:"dummyvalue"%>
+            <%= f.password_field :password, class:"form-control", value:"dummyvalue",required:true%>
         </div>
     </div>
 
@@ -71,7 +71,7 @@
             <%= f.label :confirm_password, class:"col-form-label form-control-label"%>
         </div>
         <div class="col-lg-9">
-           <%= f.password_field :confirm_password, class:"form-control", value:"dummyvalue"%>
+           <%= f.password_field :confirm_password, class:"form-control", value:"dummyvalue",required:true%>
         </div>
     </div>
 

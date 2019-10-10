@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get '/dashboard/:id', to:'users#dashboard'
   get '/orders/change_status/:id', to:'orders#change_status' 
   resources :users
+  get '/res_user_reg', to:'restaurant_user_registrations#new'
+  post '/res_user_reg', to:'restaurant_user_registrations#create'
 end

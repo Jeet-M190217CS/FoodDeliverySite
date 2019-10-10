@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     include SessionsHelper
     include ApplicationHelper
+    include UsersHelper
     
     before_action :prevent_caching
 

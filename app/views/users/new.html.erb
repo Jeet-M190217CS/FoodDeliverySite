@@ -3,44 +3,14 @@
 <div class="text-center"><h3>Sign Up</h3></div>
 <%if @user.errors.any? %>
     <div class="row">
-        <div class="col-lg-6 offset-lg-3">
+        <div class="col-md-6 offset-md-3">
             <%= render 'layouts/user-error' %>
         </div>
    </div>
 <% end %>
 <div class="row">
-    <div class="col-lg-6 offset-lg-3">
-        <%= form_for(@user) do |f|%>
-            <div class="form-group">
-                    <%= f.label :name%>
-                    <%= f.text_field :name, class:"form-control", placeholder:"Enter Name"%>
-            </div>
-            <div class="form-group">
-                <%= f.label :email%>
-                <%= f.email_field :email, class:"form-control", placeholder:"Enter Email"%>
-            </div>
-
-            <div class="form-group">
-                <%= f.label :phone %>
-                <%= f.telephone_field :phone, class:"form-control ", placeholder:"Enter Phone Number"%>
-            </div>
-
-            <div class="form-group">
-                <%= f.label :password%>
-                <%= f.password_field :password, class:"form-control", placeholder:"Enter Password"%>
-            </div>
-
-            <div class="form-group">
-                <%= f.label :password_confirmation, "Password Confirmation" %>
-                <%= f.password_field :password_confirmation, class:"form-control", placeholder:"Confirm Password"%>
-            </div>
-            
-            <%= hidden_field_tag 'role', params[:role] %>
-            
-            <div class="form-group">
-                <%= f.submit "Sign Up", class:"btn btn-primary btn-block" %>
-            </div>
-        <% end %>
+    <div class="col-md-6 offset-md-3">
+        <%= render 'layouts/user-registration-form'%>
     </div>
 </div>
 </div>
