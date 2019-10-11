@@ -1,0 +1,29 @@
+<div class="text-center"> <h2>Items</h2><br></div>
+<table id="list-items-table" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @res = Restaurant.find_by(id:params[:res_items]) %>
+            <% @res.items.each do |item|%>
+                <tr id="res-item-row-<%=item.id%>">
+                    <td><%= item.name %></td>
+                    <td><%= item.description %></td>
+                    <td><%= item.price %></td>
+                    <td><%= link_to "Add To Cart", '/cart/add/'+item.id.to_s%></td>
+                </tr>
+            <% end %>
+        </tbody>
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#list-items-table').DataTable();
+    });
+</script>

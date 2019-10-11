@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   resources :users
   get '/res_user_reg', to:'restaurant_user_registrations#new'
   post '/res_user_reg', to:'restaurant_user_registrations#create'
+  get '/cart/add/:id', to:'cart#add'
+  get '/cart/clear', to:'cart#clear'
+  get '/cart/remove/:id', to:'cart#remove'
+  get '/cart/order', to: 'cart#order'
 end

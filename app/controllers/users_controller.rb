@@ -29,6 +29,10 @@ class UsersController < ApplicationController
         @user.email = params[:user][:email]
         @user.phone = params[:user][:phone]
 
+        if params[:user].has_key?(:image)
+            @user.image = params[:user][:image]
+        end
+
         @adrs = Address.find_by(parent_ref_id:params[:id], parent_ref_type:"User")
         @adrs ||= Address.new
         @adrs.street = params[:user][:street]
@@ -81,7 +85,7 @@ class UsersController < ApplicationController
     end
 
     def user_dashboard
-
+        @restaurants = Restaurant.all
     end
 
     def admin_dashboard
@@ -95,7 +99,7 @@ class UsersController < ApplicationController
 
     private
     def user_params
-        para = params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
+        para = params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation, :image)
         para['role'] = params['role']
         para
     end

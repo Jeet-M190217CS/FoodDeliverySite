@@ -1,0 +1,25 @@
+<div class="text-center"> <h2>Restaurants</h2><br></div>
+<table  id="list-restaurants-table" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Restaurant Name</th>
+                <th>Restaurant Location(Street)</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% @restaurants.each do |res|%>
+                <tr id="res-row-<%=res.id%>">
+                    <td><%= res.name %></td>
+                    <td><%= res.address.street%></td>
+                    <td><%= link_to "View items", '/dashboard/'+@user.id.to_s+'?res_items='+res.id.to_s %></td>
+                </tr>
+            <% end %>
+        </tbody>
+</table>
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#list-restaurants-table').DataTable();
+    });
+</script>

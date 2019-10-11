@@ -1,16 +1,59 @@
+<% if params[:show] == "MyCart" %>
+<% cart_active = "active";cart_show="show active"%>
+<% elsif params[:show] == "TrackOrder"%>
+<% track_active = "active";track_show="show active"%>
+<% else %>
+<% home_active = "active";home_show="show active"%>
+<% end %>
+
 <div class="col-2" style="background-color:aliceblue;padding-right:0">
     <div class="nav nav-pills flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+        <a class="nav-link <%= home_active%>" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" onclick="removeQS()">Home</a>
+        <a class="nav-link <%= cart_active%>" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">My Cart</a>
+        <a class="nav-link <%= track_active%>" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" onclick="realodPage()">Track Order</a>
     </div>
 </div>
 <div class="col-9">
     <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
-        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
-        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+        <div class="tab-pane fade <%= home_show%>" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <% if params[:res_items] %>
+                <%= render "layouts/dashboards/user/list-items"%>
+            <% else %>
+                <%= render "layouts/dashboards/user/list-restaurants"%>
+            <% end %>
+        </div>
+        <div class="tab-pane fade <%= cart_show%>" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <%= render "layouts/dashboards/user/cart"%>
+        </div>
+        <div class="tab-pane fade <%= track_show%>" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <%= render "layouts/dashboards/user/track-order"%>
+        </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function removeQS()
+    {
+        var uri = window.location.toString();
+	    if (uri.indexOf("?") > 0) {
+	        var clean_uri = uri.substring(0, uri.indexOf("?"));
+            window.history.replaceState({}, document.title, clean_uri);
+        }
+        location.reload();
+    }
+
+    function realodPage()
+    {
+        var url = window.location.href;
+        if(url.indexOf('?') > -1 && url.indexOf('TrackOrder') == -1)
+        {
+            url+= '&show=TrackOrder'
+        }
+        else if (url.indexOf('TrackOrder') == -1)
+        {
+            url+= '?show=TrackOrder'
+        }
+
+        window.location.href = url;
+    }
+</script>

@@ -19,12 +19,12 @@
             </div>
         </div>
         <div class="col-md-3 order-md-1">
-            <%= image_tag "food.jpg", size:"250x250", class:"mx-auto img-fluid img-circle d-block"%>
-            <h6 class="mt-2 text-center">Upload a different photo</h6>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile">
-                <label class="custom-file-label" for="customFile">Choose file</label>
-            </div>
+            <% if !@user.image.attached? %>
+                <%= image_tag "food.jpg", size:"250x250", class:"mx-auto img-fluid img-circle d-block"%>
+            <% else %>
+                <%= image_tag @user.image, size:"250x250", class:"mx-auto img-fluid img-circle d-block"%>
+            <% end %>
+            <h6 class="mt-2 text-center">Profile Photo</h6>
         </div>    
     </div>
 </div>

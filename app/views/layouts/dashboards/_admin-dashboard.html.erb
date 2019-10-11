@@ -43,8 +43,8 @@ channel.bind('new-order', function(order) {
                         +'<td>'+order.created_at+'</td>'
                         +'<td id="process-order-status-'+order.id+'">'+order.status+'</td>'
                         +'</tr>';
-    $('#view-order-table tr:last').after(newTableRow2);
-    $('#process-order-table tr:last').after(newTableRow1);;
-    console.log(newTableRow1);
+    
+    $('#view-order-table').DataTable().row.add($(newTableRow2)).draw();
+    $('#process-order-table').DataTable().row.add($(newTableRow1)).draw();
 });
 </script>

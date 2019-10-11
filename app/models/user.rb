@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_one :address, as: :parent_ref
     has_one :restaurant
     has_many :orders
+    has_one_attached :image
 
     before_save {email.downcase!}
     validates :name, presence: true
@@ -13,4 +14,14 @@ class User < ApplicationRecord
                 uniqueness: { case_sensitive:false } 
     has_secure_password
     validates :password, length:{ minimum:6 }, on:[:create], presence:true
+    validate :image_type
+
+    private
+    def image_type
+        if image.attached?
+            if !image.content_type.in?(%('image/png image/jpeg'))
+                errors.add(:image,"needs to be a jpg/jpeg or png!")
+            end
+        end
+    end
 end
