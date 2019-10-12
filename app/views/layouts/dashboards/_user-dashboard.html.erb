@@ -56,4 +56,15 @@
 
         window.location.href = url;
     }
+
+    var pusher = new Pusher('033b707bcaba4f7c5f3d', {
+        cluster: 'ap2',
+        forceTLS: true
+    });
+
+    var channel = pusher.subscribe('status');
+    channel.bind('change-status',function(message){
+        alert(message);
+    });
+
 </script>

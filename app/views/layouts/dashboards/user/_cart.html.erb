@@ -1,5 +1,7 @@
 <div class="text-center"><h2>Cart</h2><br></div>
 <% if session[:cart] %>
+<h5>Restaurant: <%= Restaurant.find_by(id: session[:restaurant_id]).name%></h5>
+<br>
 <table class="table table-striped">
     <thead>
         <tr>

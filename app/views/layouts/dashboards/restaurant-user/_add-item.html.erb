@@ -1,0 +1,74 @@
+<div class="text-center"> <h2>Add Item</h2><br></div>
+<div class="row">
+<div class="col-md-6 offset-md-3">
+<% if @new_item.errors.any? %>
+<div id="error_explanation">
+    <div class="alert alert-danger">
+        The form contains <%= pluralize(@new_item.errors.count, "error")%>.
+    </div>
+     <ul>
+        <% @new_item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<%= form_with(model: @new_item, url:@create_item_path ,local: true) do |f|%>
+    <div class="form group row">
+        <div class="col-md-3">
+            <%= f.label :name, class:"col-form-label form-control-label"%>
+        </div>
+        <div class="col-md-9">
+            <%= f.text_field :name, class:"form-control", required: true%>
+        </div>
+    </div>
+    <br>
+    <div class="form group row">
+        <div class="col-md-3">
+            <%= f.label :description, class:"col-form-label form-control-label"%>
+        </div>
+        <div class="col-md-9">
+            <%= f.text_area :description, class:"form-control", required: true%>
+        </div>
+    </div>
+    <br>
+    <div class="form group row">
+        <div class="col-md-3">
+            <%= f.label :price, class:"col-form-label form-control-label"%>
+        </div>
+        <div class="col-md-9">
+            <%= f.number_field :price, class:"form-control", required: true%>
+        </div>
+    </div>
+    <br>
+     <div class="form group row">
+        <div class="col-md-3">
+            <%= f.label :image, class:"col-form-label form-control-label"%>
+        </div>
+        <div class="col-md-9">
+            <%= f.file_field :image %>
+        </div>
+    </div>
+    <br>
+    <div class="form group row">
+        <div class="col-md-3">
+            <%= f.label :item_type, class:"col-form-label form-control-label"%>
+        </div>
+        <div class="col-md-9">
+            <%= f.radio_button :item_type, "Vegetarian" ,checked: true%>
+            <%= f.label :item_type, "Veg", value: "Veg"%>
+            <%= f.radio_button :item_type, "Non-Veg"%>
+            <%= f.label :item_type, "Non-Veg", value: "Non-Veg"%>
+        </div>
+    </div>
+    <br>
+    <div class="from group row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-9 text-center">
+            <%= f.submit "Save Item", class:"btn btn-primary btn-bg"%>
+        </div>
+    </div>
+<%end%>
+</div>
+</div>

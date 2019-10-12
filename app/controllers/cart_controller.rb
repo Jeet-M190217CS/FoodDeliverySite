@@ -1,4 +1,7 @@
 class CartController < ApplicationController
+    before_action :logged_in_user
+    before_action :only_user
+
     def add
         item = Item.find_by(id: params[:id])
         session[:cart] ||= {}
@@ -82,11 +85,28 @@ class CartController < ApplicationController
         order.update(total: total)
         order.save
 
-        flash[:success] = "Orderd Placed Successfully!!!\nOrder id:"+order.id.to_s
+        
         @user=User.find_by(id: current_user.id)
        
         UserMailer.order_confirmation(@user).deliver_now
+        flash[:success] = "Orderd Placed Successfully!!!(Order id:"+order.id.to_s+")"
         session.delete(:cart)
         redirect_to '/dashboard/'+current_user.id.to_s+'?show=MyCart' 
     end
+
+    def logged_in_user
+        unless user_logged_in?
+            flash[:danger]  = "Please log in."
+            redirect_to login_url
+        end
+    end
+
+    def only_user
+        unless current_user.role == "U"
+            log_out
+            flash[:danger]  = "Invalid Action"
+            redirect_to root_url
+        end
+    end
+
 end

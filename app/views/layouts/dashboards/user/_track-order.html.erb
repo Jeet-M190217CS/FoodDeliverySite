@@ -1,5 +1,4 @@
-<% @pendingOrders = Order.where("user_id="+current_user.id.to_s+" AND NOT status='D'")%>
-<h1 align="center">Pending Orders</h1>
+<h6>Pending Orders</h6>
 <% @pendingOrders.each do |order|%>
     <div class="alert alert-success">
      Order ID:<%= order.id%>,Status:<%=order.status%>
