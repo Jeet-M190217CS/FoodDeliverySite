@@ -58,8 +58,13 @@ class CartController < ApplicationController
 
     def order
         if !session[:cart]
+           
+            @user=User.find_by(id: current_user.id)
+            UserMailer.order_confirmation(@user).deliver_now
             flash[:danger] = "Add item to cart !!!"
             redirect_to '/dashboard/'+current_user.id.to_s+'?show=MyCart'
+            
+            
             return
         end
 
@@ -78,6 +83,9 @@ class CartController < ApplicationController
         order.save
 
         flash[:success] = "Orderd Placed Successfully!!!\nOrder id:"+order.id.to_s
+        @user=User.find_by(id: current_user.id)
+       
+        UserMailer.order_confirmation(@user).deliver_now
         session.delete(:cart)
         redirect_to '/dashboard/'+current_user.id.to_s+'?show=MyCart' 
     end
