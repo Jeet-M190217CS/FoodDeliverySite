@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   get '/cart/clear', to:'cart#clear'
   get '/cart/remove/:id', to:'cart#remove'
   get '/cart/order', to: 'cart#order'
+  resources :restaurants do
+    resources :items
+  end
 end

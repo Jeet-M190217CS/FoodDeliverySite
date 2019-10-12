@@ -86,6 +86,7 @@ class UsersController < ApplicationController
 
     def user_dashboard
         @restaurants = Restaurant.all
+        @pendingOrders = Order.where("user_id="+current_user.id.to_s+" AND NOT status='D'")
     end
 
     def admin_dashboard
@@ -94,7 +95,11 @@ class UsersController < ApplicationController
     end
 
     def restaurant_user_dashboard
-    
+        @restaurant = Restaurant.find_by(user_id: current_user.id)
+        @items = @restaurant.items
+        @new_item = Item.new
+        @create_item_path = "/restaurants/"+@restaurant.id.to_s+"/items"
+        
     end
 
     private

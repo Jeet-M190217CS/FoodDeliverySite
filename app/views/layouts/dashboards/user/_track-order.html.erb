@@ -1,4 +1,3 @@
-<% @pendingOrders = Order.where("user_id="+current_user.id.to_s+" AND NOT status='D'")%>
 <h6>Pending Orders</h6>
 <% @pendingOrders.each do |order|%>
     
