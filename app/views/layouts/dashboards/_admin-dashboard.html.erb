@@ -32,7 +32,7 @@ channel.bind('new-order', function(order) {
                         +'<td>'+order.user_id+'</td>'
                         +'<td>'+order.restaurant_id+'</td>'
                         +'<td>'+order.created_at+'</td>'
-                        +'<td id="process-order-status-'+order.id+'">'+order.status+'</td>'
+                        +'<td id="process-order-status-'+order.id+'">'+get_status(order.status)+'</td>'
                         +'<td><a data-remote="true" href="/orders/change_status/'+order.id+'">Change Status</a></td>'
                         +'</tr>';
 
@@ -41,10 +41,26 @@ channel.bind('new-order', function(order) {
                         +'<td>'+order.user_id+'</td>'
                         +'<td>'+order.restaurant_id+'</td>'
                         +'<td>'+order.created_at+'</td>'
-                        +'<td id="process-order-status-'+order.id+'">'+order.status+'</td>'
+                        +'<td id="process-order-status-'+order.id+'">'+get_status(order.status)+'</td>'
                         +'</tr>';
-    
+    console.log("yes")
     $('#view-order-table').DataTable().row.add($(newTableRow2)).draw();
     $('#process-order-table').DataTable().row.add($(newTableRow1)).draw();
 });
+
+function get_status(status)
+{
+    if(status=="W")
+    {
+        return "Placed";
+    }
+    else if (status=="A")
+    {
+        return "In trasit";
+    }
+    else
+    {
+        return "Delivered"
+    }
+}
 </script>

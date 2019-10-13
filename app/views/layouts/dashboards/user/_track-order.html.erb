@@ -1,7 +1,7 @@
 <h6>Pending Orders</h6>
 <% @pendingOrders.each do |order|%>
     <div class="alert alert-success">
-     Order ID:<%= order.id%>,Status:<%=order.status%>
+     Order ID:<%= order.id%>,Status:<%=get_status(order.status)%>
     <br>
     </div>
 <% end %>

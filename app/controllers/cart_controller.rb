@@ -1,7 +1,6 @@
 class CartController < ApplicationController
     before_action :logged_in_user
     before_action :only_user
-
     def add
         item = Item.find_by(id: params[:id])
         session[:cart] ||= {}
@@ -61,13 +60,8 @@ class CartController < ApplicationController
 
     def order
         if !session[:cart]
-           
-            @user=User.find_by(id: current_user.id)
-            UserMailer.order_confirmation(@user).deliver_now
             flash[:danger] = "Add item to cart !!!"
             redirect_to '/dashboard/'+current_user.id.to_s+'?show=MyCart'
-            
-            
             return
         end
 
@@ -87,8 +81,9 @@ class CartController < ApplicationController
 
         
         @user=User.find_by(id: current_user.id)
-       
-        UserMailer.order_confirmation(@user).deliver_now
+        #UserMailer.order_confirmation(@user).deliver_now
+    #rescue Exception => e
+        flash[:danger] = "Error Sending Confirmation mail!!"
         flash[:success] = "Orderd Placed Successfully!!!(Order id:"+order.id.to_s+")"
         session.delete(:cart)
         redirect_to '/dashboard/'+current_user.id.to_s+'?show=MyCart' 
@@ -108,5 +103,4 @@ class CartController < ApplicationController
             redirect_to root_url
         end
     end
-
 end

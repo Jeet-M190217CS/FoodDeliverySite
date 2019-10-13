@@ -32,7 +32,6 @@
         </div>
     </div>
  
-    <% if current_user.role == "U" %>
     <div class="form-group row">
         <div class="col-md-3">
             <%= f.label :address, class:"col-form-label form-control-label"%>
@@ -56,7 +55,6 @@
             <%= f.text_field :state, class:"form-control", placeholder:"State", value:@user.address.nil? ? "" : @user.address.state,required:true%>
         </div>
     </div>
-    <% end %>
     
     <div class="form-group row">
         <div class="col-md-3">

@@ -1,4 +1,4 @@
 var status_tag = '#process-order-status-'+'<%= j @order.id %>'
-var newStatus = '<%= j @order.status %>'
+var newStatus = '<%= j get_status(@order.status) %>'
 $(status_tag).html(newStatus)
 $(status_tag+'-show').html(newStatus)

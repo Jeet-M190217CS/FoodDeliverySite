@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     include ApplicationHelper
     include UsersHelper
     include PusherHelper
+    include OrdersHelper
     
     before_action :prevent_caching
 
